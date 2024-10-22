@@ -3,6 +3,7 @@
 #include "Graphics/ShapeComponent.h"
 #include "Engine/TransformComponent.h"
 #include "Physics/CircleColliderComponent.h"
+#include "Physics/AABBColliderComponent.h"
 #include "Physics/RigidBodyComponent.h"
 #include <chrono>
 #include <cmath>
@@ -35,6 +36,9 @@ void TestScene::onStart()
 	m_floor->getTransform()->setLocalPosition({ 400, 750 });
 	m_floor->addComponent<GameGraphics::ShapeComponent>()
 		->setShapeType(GameGraphics::BOX);
+	m_floor->addComponent(new GamePhysics::AABBColliderComponent(1010, 110));
+	m_floor->addComponent(new GamePhysics::RigidBodyComponent());
+	m_floor->getComponent<GamePhysics::RigidBodyComponent>()->setGravity(0.0f);
 	addEntity(m_floor);
 }
 
