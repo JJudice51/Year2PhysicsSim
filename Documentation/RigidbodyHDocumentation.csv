@@ -1,0 +1,18 @@
+Class,RigidBodyComponent: public GameEngine::Component,The Class RigidbodyComponent is a child of the class Component.
+,,
+,public: ,
+,void Vector2 getVelocity() {return m_velocity},this function grabs and returns the velocity of the Rigidbody.
+,void setVelocity(GameMath::Vector2 velocity) { m_velocity = velocity; },this function sets the current velocity of the Rigidbody.
+,float getMass() { return m_mass; },this function grabs and returns the mass of the Rigidbody.
+,void setMass(float mass) { m_mass = mass; },this function sets the current mass of the Rigidbody.
+,float getGravity() { return m_gravity; },this function grabs and returns the gravity of the Rigidbody.
+,void setGravity(float gravity) { m_gravity = gravity; },this function sets the current gravity of the Rigidbody.
+,void applyForce(GameMath::Vector2 force);,Applies a force divided by the mass to change its current velocity
+,"void applyForceToEntity(RigidBodyComponent* rigidBody, GameMath::Vector2 force);",Applies a force to the RigidBody based on the force calculated by the applyForce() function.
+,void fixedUpdate(float fixedDeltaTime) override;,overrides the Component fixedUpdate to change the owner of the Rigidbody's current position based on the velocity applied each frame and the gravity affecting it's mass.
+,void resolveCollision(GamePhysics::Collision* collisionData);,Uses the detection data from the Owner's collider to resolve the collision accurately and apply appropriate force to the Rigidbody.
+,,
+,private:,
+,GameMath::Vector2 m_velocity;,A vector that represents the distance divided by the time traveled.
+,float m_mass = 1,the measure of the amount or matter or space an object takes up in the scene.
+,float m_gravity = 9.81f;,this represents the force applied to an object in gravity with a baseline of earth's gravitational pull.

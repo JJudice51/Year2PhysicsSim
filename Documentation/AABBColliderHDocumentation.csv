@@ -1,0 +1,15 @@
+class AABBColliderComponent : public ColliderComponent,This class is a chilc class of ColliderComponent.
+,
+public:,
+"AABBColliderComponent(float width, float height) : ColliderComponent() { m_width = width; m_height = height; setColliderType(AABB); }",this is the contructor for a AABBColliderComponent.
+GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override,this function is called when a collision with a circle collider is detected and is overridden from the base class.
+GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;,this function is called when a collision with an AABB collider is detected and is overridden from the base class.
+void draw() override;,this function is called when an AABB collider is needed to be drawn in the scene and is overridden form the base class.
+float getWidth() {return m_width;},grabs and returns the width of the AABB collider.
+float getHeight() {return m_height;},grabs and returns the height of the AABB collider.
+float getRadius() {return m_radius;},grabs and returns the radius of the AABB collider.
+,
+private:,
+float m_width;,the horizontal measurement or distance measured from side to side.
+float m_height;,the measurement of the distance of an object from the base to the top.
+float m_radius;,the line segment that runs from the center of the rectangle/square to any one of its vertices.
