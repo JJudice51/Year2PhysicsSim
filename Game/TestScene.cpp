@@ -17,7 +17,10 @@ void TestScene::onStart()
 	m_circle1->addComponent<GameGraphics::ShapeComponent>()
 		->setShapeType(GameGraphics::CIRCLE);
 	m_circle1->addComponent(new GamePhysics::CircleColliderComponent(50));
-	m_circle1->addComponent(new GamePhysics::RigidBodyComponent());
+	GamePhysics::RigidBodyComponent* circle1Rigi = m_circle1->addComponent(new GamePhysics::RigidBodyComponent());
+	circle1Rigi->setGravity(9.18f);
+	circle1Rigi->setMass(5);
+	circle1Rigi->setEnabled(true);
 	addEntity(m_circle1);
 
 	// Set up circle 2
@@ -27,7 +30,12 @@ void TestScene::onStart()
 	m_circle2->addComponent<GameGraphics::ShapeComponent>()
 		->setShapeType(GameGraphics::CIRCLE);
 	m_circle2->addComponent(new GamePhysics::CircleColliderComponent(50));
-	m_circle2->addComponent(new GamePhysics::RigidBodyComponent());
+	GamePhysics::RigidBodyComponent* circle2Rigi = m_circle1->addComponent(new GamePhysics::RigidBodyComponent());
+	circle2Rigi->setGravity(9.18f);
+	circle2Rigi->setMass(3);
+	circle2Rigi->setEnabled(true);
+
+
 	addEntity(m_circle2);
 
 	// Set up floor
@@ -38,7 +46,10 @@ void TestScene::onStart()
 		->setShapeType(GameGraphics::BOX);
 	m_floor->addComponent(new GamePhysics::AABBColliderComponent(1010, 110));
 	m_floor->addComponent(new GamePhysics::RigidBodyComponent());
-	m_floor->getComponent<GamePhysics::RigidBodyComponent>()->setGravity(0.0f);
+	m_floor->GamePhysics::RigidBodyComponent* floorRigi = m_circle1->addComponent(new GamePhysics::RigidBodyComponent());
+	floorRigi->setGravity(0);
+	floorRigi->setMass(20);
+	floorRigi->setEnabled(true);
 	addEntity(m_floor);
 }
 
