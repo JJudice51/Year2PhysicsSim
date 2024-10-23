@@ -4,7 +4,7 @@
 #include "Math/Vector2.h"
 #include "Engine/Entity.h"
 #include <raylib.h>
-
+#include <iostream>
 
 /// <summary>
 /// Checks for collision with a Circle Collider
@@ -19,7 +19,7 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle
     GameMath::Vector2 direction = otherPosition - position;
     float distance = direction.getMagnitude();
     float otherRadius = other->getRadius();
-
+    std::cout << "collision check" << "\n";
     //If there is no collision then don't do anything and return a null pointer.
     if (distance > otherRadius + m_radius)
         return nullptr;
@@ -34,7 +34,7 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle
         collisionData->normal = direction.getNormalized();
         collisionData->contactPoint = position + direction.getNormalized() * getRadius();
         collisionData->penetrationDistance = (otherRadius + m_radius) - distance;
-         
+        std::cout << "collision detected" << "\n";
         return collisionData;
     }
 }

@@ -34,9 +34,20 @@ void TestScene::onStart()
 	circle2Rigi->setGravity(9.18f);
 	circle2Rigi->setMass(3);
 	circle2Rigi->setEnabled(true);
-
-
+	
 	addEntity(m_circle2);
+
+	m_circle3 = new GameEngine::Entity();
+	m_circle3->getTransform()->setLocalScale({ 40, 40 });
+	m_circle3->getTransform()->setLocalPosition({ 600, 200 });
+	m_circle3->addComponent<GameGraphics::ShapeComponent>()
+		->setShapeType(GameGraphics::CIRCLE);
+	m_circle3->addComponent(new GamePhysics::CircleColliderComponent(40));
+	GamePhysics::RigidBodyComponent* circle3Rigi = m_circle3->addComponent(new GamePhysics::RigidBodyComponent());
+	circle3Rigi->setGravity(0.5f);
+	circle3Rigi->setMass(3);
+	circle3Rigi->setEnabled(true);
+	addEntity(m_circle3);
 
 	// Set up floor
 	m_floor = new GameEngine::Entity();

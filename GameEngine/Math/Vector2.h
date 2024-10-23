@@ -21,6 +21,8 @@ namespace GameMath
 
         bool operator ==(Vector2 rhs);
 
+        bool operator<=(Vector2 rhs);
+
         /// <summary>
         /// Returns the length of the vector.
         /// </summary>

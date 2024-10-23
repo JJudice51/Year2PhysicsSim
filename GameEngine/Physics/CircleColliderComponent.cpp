@@ -3,6 +3,8 @@
 #include "Math/Vector2.h"
 #include "Engine/Entity.h"
 #include <raylib.h>
+#include "AABBColliderComponent.h"
+#include <iostream>
 
 GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionCircle(CircleColliderComponent* other)
 {
@@ -23,8 +25,35 @@ GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionCirc
     return collisionData;
 }
 
-GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionAABB(AABBColliderComponent* other)
+GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionAABB(GamePhysics::AABBColliderComponent* other)
 {
+    GameMath::Vector2 direction = getOwner()->getTransform()->getGlobalPosition() - other->getOwner()->getTransform()->getGlobalPosition();
+    
+    if (direction.x < -other->getWidth() / 2)
+    {
+        direction.x = -other->getWidth() / 2;
+    }
+    else if(direction.x > other->getWidth() / 2)
+    {
+        direction.x = other->getWidth() / 2;
+    }
+    if (direction.y < -other->getHeight() / 2)
+    {
+        direction.y = -other->getHeight() / 2;
+    }
+    else if (direction.y > other->getWidth() / 2)
+    {
+        direction.y = other->getWidth() / 2;
+    }
+
+    GameMath::Vector2 edgePoint = direction + other->getOwner()->getTransform()->getGlobalPosition();
+
+    float distance = (getOwner()->getTransform()->getGlobalPosition() - edgePoint).getMagnitude();
+    if (distance <= m_radius)
+    {
+        std::cout << "CollistionDetected" << "\n";
+    }
+
     return nullptr;
 }
 

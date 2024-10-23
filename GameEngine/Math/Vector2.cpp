@@ -101,3 +101,8 @@ bool GameMath::Vector2::operator==(Vector2 rhs)
 {
     return x == rhs.x && y == rhs.y;
 }
+
+bool GameMath::Vector2::operator<=(Vector2 rhs)
+{
+    return x <= rhs.x && y <= rhs.y;
+}

@@ -15,7 +15,7 @@ namespace GamePhysics
 
 		float getGravity() { return m_gravity; }
 		void setGravity(float gravity) { m_gravity = gravity; }
-
+		float getDotProduct(GameMath::Vector2 lhs, GameMath::Vector2 rhs) { return lhs.x * rhs.x + lhs.y * rhs.y; }
 		void applyForce(GameMath::Vector2 force);
 		void applyForceToEntity(RigidBodyComponent* rigidBody, GameMath::Vector2 force);
 
